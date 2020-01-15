@@ -67,17 +67,12 @@ describe('Users', () => {
       await InstanceViewPage.whenLoaded();
     });
 
-    it('should load the user instance details', () => {
-      expect(usersInteractor.instance.isVisible).to.be.true;
-    });
-
     it('should display the loans section', () => {
       expect(InstanceViewPage.loansSection.isPresent).to.be.true;
     });
 
     describe('clicking on the accordion of the loans section', function () {
       beforeEach(async function () {
-        await InstanceViewPage.whenLoaded();
         await InstanceViewPage.loansSection.accordionButton.click();
       });
 
@@ -114,10 +109,6 @@ describe('Users', () => {
               await usersInteractor.whenInstanceLoaded();
             });
 
-            it('should navigate to the user preview page', () => {
-              expect(usersInteractor.instance.isVisible).to.be.true;
-            });
-
             it('should have the correct url with query', function () {
               expect(this.location.pathname.endsWith(`users/preview/${users[0].id}`)).to.be.true;
               expect(this.location.search).to.equal(searchQuery);
@@ -152,10 +143,6 @@ describe('Users', () => {
               await LoansListingPane.whenLoaded();
               await LoansListingPane.closeButton.click();
               await usersInteractor.whenInstanceLoaded();
-            });
-
-            it('should navigate to the user preview page', () => {
-              expect(usersInteractor.instance.isVisible).to.be.true;
             });
 
             it('should have the correct url with query', function () {
